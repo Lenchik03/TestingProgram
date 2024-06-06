@@ -21,6 +21,9 @@ try
         var cols = answer.Split();
         if (cols.Length != 2)
             continue;
+
+       
+
         if (!int.TryParse(cols[0], out index))
         {
             Console.WriteLine("Неверно указан индекс студента. Укажите число первым в строке");

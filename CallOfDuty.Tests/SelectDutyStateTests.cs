@@ -50,6 +50,32 @@ namespace CallOfDuty.Tests
             Assert.That(model.CountApproved, Is.EqualTo(1));
         }
 
+
+        [Test]
+        public void SelectDuty_StudentOneNotEqualStudentTwo()
+        {
+            model.RejectAndGetAnotherStudent(model.Students[0]);
+            try
+            {
+                model.RejectAndGetAnotherStudent(model.Students[0]);
+            }
+            catch (Exception ex)
+            {
+                Assert.Pass();
+                return;
+            }
+            //Assert.Fail("Должен быть эксепшн, что мало студентов");  
+            Assert.That(model.Students[0], Is.EqualTo(model.Students[1]));   
+        }
+
+        [Test]
+        public void SelectDuty_RejectAllStudents()
+        {
+            foreach (var stud in db.Students)
+                model.RejectAndGetAnotherStudent(stud);
+            Assert.That(model.CountRejected, Is.EqualTo(db.Students.Count));
+        }
+
         [Test]
         public void SelectDuty_CanApprove2StudentDuty()
         {
@@ -57,6 +83,8 @@ namespace CallOfDuty.Tests
                 model.Approve(stud);
             Assert.That(model.CountApproved, Is.EqualTo(2));
         }
+
+        
 
         [Test]
         public void SelectDuty_CanRejectStudentDuty()

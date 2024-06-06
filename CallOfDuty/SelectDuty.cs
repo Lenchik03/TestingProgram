@@ -15,6 +15,7 @@
         Dictionary<Student, bool> studentStatus = new Dictionary<Student, bool>();
         public List<Student> Students { get; set; } = new();
         public int CountApproved { get => studentStatus.Values.Where(s => s).Count(); }
+        public int CountRejected { get => studentStatus.Values.Where(s => !s).Count(); }
         
 
         public void Approve(Student student)
@@ -37,6 +38,7 @@
         {
             Students.Remove(student);
             Student stud = studentDuty.GetRandomStudents(1, studentStatus.Keys).First();
+            Reject(stud);
             Students.Add(stud);
             return stud;
         }
@@ -48,10 +50,16 @@
             studentStatus[student] = status;
         }
 
+        
+
+
         public void Save()
         {
             if (CountApproved < 2)
                 throw new SelectDutyException("Нужно назначить больше дежурных");
+
+            if (CountRejected == Students.Count)
+                throw new SelectDutyException("Нужно назначить больше дежурных1");
 
             foreach (var student in Students)
                 studentDuty.AddNewDuty(student, DateTime.Today);
