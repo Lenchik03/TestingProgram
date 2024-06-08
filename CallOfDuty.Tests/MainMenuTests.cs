@@ -46,5 +46,21 @@ namespace CallOfDuty.Tests
 
             Assert.That(true, Is.EqualTo(m));
         }
+
+        [Test]
+        public void MainMenu_WasDeleteAllDutysForAllStudents()
+        {
+            string folder = "test_dutys";
+            StudentDuty studentDuty = new StudentDuty(db, folder);
+
+            List<Student> students =  db.Students;
+            int studentDutyCount;
+            mainMenu.DeleteAllDutys();
+            foreach (var student in students)
+            {
+                studentDutyCount = studentDuty.GetDutyCount(student);
+                Assert.That(studentDutyCount, Is.EqualTo(0));
+            }
+        }
     }
 }

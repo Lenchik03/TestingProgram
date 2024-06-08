@@ -15,5 +15,6 @@ commandManager.RegisterCommand("Pick", new CommandPickStudent(mainMenu, todayDut
 commandManager.RegisterCommand("Update", new CommandUpdateStudent(mainMenu, studentRepository));
 commandManager.RegisterCommand("Show", new CommandShowAllStudent(mainMenu, studentRepository));
 commandManager.RegisterCommand("Delete", new CommandDeleteStudent(mainMenu, studentRepository));
+commandManager.RegisterCommand("Clear", new CommandClearDutys(mainMenu, studentRepository));
 commandManager.Start();
 
