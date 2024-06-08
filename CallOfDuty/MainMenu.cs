@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -34,9 +35,13 @@ namespace CallOfDuty
             return true;
         }
 
-        public void Delete()
+        public bool Delete(Student student)
         {
-
+            if (!studentRepository.Students.Contains(student))
+                return false;
+            studentRepository.Students.Remove(student);
+            Save();
+            return true;
         }
 
         public List<Student> ShowAll(string text)

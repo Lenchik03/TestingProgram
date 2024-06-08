@@ -12,7 +12,8 @@ CommandManager commandManager = new CommandManager();
 MainMenu mainMenu = new MainMenu(studentRepository);
 commandManager.RegisterCommand("Create", new CommandCreateStudent(mainMenu));
 commandManager.RegisterCommand("Pick", new CommandPickStudent(mainMenu, todayDuty));
-commandManager.RegisterCommand("Update", new CommandUpdateStudent(mainMenu));
+commandManager.RegisterCommand("Update", new CommandUpdateStudent(mainMenu, studentRepository));
 commandManager.RegisterCommand("Show", new CommandShowAllStudent(mainMenu, studentRepository));
+commandManager.RegisterCommand("Delete", new CommandDeleteStudent(mainMenu, studentRepository));
 commandManager.Start();
 

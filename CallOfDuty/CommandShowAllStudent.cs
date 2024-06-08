@@ -1,6 +1,6 @@
 ﻿using CallOfDuty;
 
-internal class CommandShowAllStudent : UserCommand
+class CommandShowAllStudent : UserCommand
 {
     private MainMenu mainMenu;
     StudentRepository studentRepository;
