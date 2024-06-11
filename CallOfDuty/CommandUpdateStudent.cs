@@ -20,21 +20,24 @@ internal class CommandUpdateStudent : UserCommand
 
         for (int i = 0; i < searchStudent.Count; i++)
         {
-            Console.WriteLine($"{i + 1}  {searchStudent[i].Info}");
+            Console.WriteLine($"{i + 1}  {searchStudent[i].Name}");
         }
 
         Console.WriteLine("Введите номер студента...");
         int num = int.Parse(Console.ReadLine()) - 1;
-        Student edit = searchStudent[num];
+      //  Student edit = searchStudent[num];
         Console.WriteLine("Введите новое имя");
-        edit.Name = Console.ReadLine();
+        string name = Console.ReadLine();
+        
+        
 
         Console.WriteLine("Введите новую фамилию");
-        edit.Info = Console.ReadLine();
+        string info = Console.ReadLine();
+
+        mainMenu.UpdateStud(num, name, info);
 
 
 
-
-        mainMenu.Update(edit);
+        //mainMenu.Update(edit);
     }
 }

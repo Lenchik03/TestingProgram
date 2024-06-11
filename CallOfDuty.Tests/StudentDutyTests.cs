@@ -18,6 +18,22 @@ namespace CallOfDuty.Tests
                 Directory.Delete(path, true);
         }
 
+        [TestCase(0, 3)]
+        [TestCase(1, 2)]
+        [TestCase(2, 1)]
+        public void StudentDuty_StudentsHaveSomeApprovedDutyAfterInit(int studIndex, int dutyCount)
+        {
+            string file = "testStudents.txt";
+            StudentRepository db = new StudentRepository(file);
+            string folder = "test_dutys";
+            StudentDuty studentDuty = new StudentDuty(db, folder);
+
+            Student student = db.Students[studIndex];
+            int studentDutyCount = studentDuty.GetDutyCount(student);
+
+            Assert.That(dutyCount, Is.EqualTo(studentDutyCount));
+        }
+
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
@@ -45,21 +61,7 @@ namespace CallOfDuty.Tests
             Assert.Catch(typeof(StudentDutyException), testDelegate);
         }
 
-        [TestCase(0, 3)]
-        [TestCase(1, 2)]
-        [TestCase(2, 1)]
-        public void StudentDuty_StudentsHaveSomeApprovedDutyAfterInit(int studIndex, int dutyCount)
-        {
-            string file = "testStudents.txt";
-            StudentRepository db = new StudentRepository(file);
-            string folder = "test_dutys";
-            StudentDuty studentDuty = new StudentDuty(db, folder);
-
-            Student student = db.Students[studIndex];
-            int studentDutyCount = studentDuty.GetDutyCount(student);
-
-            Assert.That(dutyCount, Is.EqualTo(studentDutyCount));
-        }
+        
 
         [Test]
         public void StudentDuty_FileWithDutyCreatesForNewStudent()

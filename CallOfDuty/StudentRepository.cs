@@ -7,6 +7,7 @@ namespace CallOfDuty
 
         public StudentRepository()
         {
+
             Students = new List<Student>();
         }
 
@@ -19,6 +20,7 @@ namespace CallOfDuty
                 var cols = line.Split(';');
                 Students.Add(new Student { Name = cols[0], Info = cols[1] });
             }
-        }        
+        }
+        
     }
 }

@@ -65,8 +65,10 @@ namespace CallOfDuty
         public int GetDutyCount(Student student)
         {
             string path = Path.Combine(Environment.CurrentDirectory, folder, $"{student.Info}.json");
-            if (!File.Exists(path))
+            FileInfo fileInfo = new FileInfo(path);
+            if (!File.Exists(path) || fileInfo.Length == 0)
                 return 0;
+
             List<DateTime> dutys = null;
             using (var fs = File.OpenRead(path))
                 dutys = JsonSerializer.Deserialize<List<DateTime>>(fs);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CallOfDuty.Tests
@@ -15,7 +16,7 @@ namespace CallOfDuty.Tests
         [SetUp]
         public void Setup()
         {
-            string file = "testStudents.txt";
+            string file = "DeleteTest.txt";
             db = new StudentRepository(file);
             mainMenu = new MainMenu(db);
             
@@ -33,9 +34,14 @@ namespace CallOfDuty.Tests
         public void MainMenu_WasUpdateStudent()
         {
             var stud1 = db.Students.FirstOrDefault(s => s.Info == "test2");
-            var m = mainMenu.Update(stud1);
+           
+            string name = "Станислав";
+            string info = "Криповников";
+            int index = 1;
+            var newStud = mainMenu.UpdateStud(index, name, info);
+            Assert.That(name, Is.EqualTo(newStud.Name));
+            Assert.That(info, Is.EqualTo(newStud.Info));
 
-            Assert.That(true, Is.EqualTo(m));
         }
 
         [Test]
@@ -50,16 +56,20 @@ namespace CallOfDuty.Tests
         [Test]
         public void MainMenu_WasDeleteAllDutysForAllStudents()
         {
-            string folder = "test_dutys";
+            string folder = "test_dutys2";
             StudentDuty studentDuty = new StudentDuty(db, folder);
-
-            List<Student> students =  db.Students;
-            int studentDutyCount;
-            mainMenu.DeleteAllDutys();
-            foreach (var student in students)
+            
+            List<DateTime> dutys0 = null;
+            List<DateTime> dutys = new List<DateTime>();
+            foreach (var student in db.Students)
             {
-                studentDutyCount = studentDuty.GetDutyCount(student);
-                Assert.That(studentDutyCount, Is.EqualTo(0));
+                string path = Path.Combine(Environment.CurrentDirectory, folder, $"{student.Info}.json");
+                mainMenu.DeleteAllDutys(path);
+                var n= new FileInfo(path);
+                var m = n.Length;
+                //using (var fs = File.OpenRead(path))
+                //    dutys = JsonSerializer.Deserialize<List<DateTime>>(fs);
+                Assert.That(m, Is.EqualTo(0));
             }
         }
     }

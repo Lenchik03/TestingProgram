@@ -12,7 +12,13 @@ internal class CommandClearDutys : UserCommand
     }
     public override void Execute()
     {
-        mainMenu.DeleteAllDutys();
+        foreach (var student in studentRepository.Students)
+        {
+            string path = Path.Combine(Environment.CurrentDirectory, "dutys", $"{student.Info}.json");
+            if (File.Exists(path))
+            mainMenu.DeleteAllDutys(path);
+        }
+        
         Console.WriteLine("Дежурства обнулены!!!");
     }
 }

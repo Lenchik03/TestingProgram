@@ -35,13 +35,22 @@ namespace CallOfDuty
             studentRepository.Students.Add(newStudent);
             return newStudent;
         }
-        
+        public Student UpdateStud(int index, string name, string info)
+        {
+            List<Student> searchStudent = studentRepository.Students;
+
+            searchStudent[index].Name = name;
+            searchStudent[index].Info = info;
+            Update(searchStudent[index]);
+           return searchStudent[index];
+        }
         public bool Update(Student student)
         {
             if(!studentRepository.Students.Contains(student))
             {
                return false;
             }
+
             Save();
             return true;
         }
@@ -79,25 +88,24 @@ namespace CallOfDuty
             File.WriteAllLines(file, studs);
         }
 
-        public void DeleteAllDutys()
+        public void DeleteAllDutys(string path)
         {
-            List<DateTime> dutys = null;
-            foreach(var student in  studentRepository.Students)
-            {
-                string path = Path.Combine(Environment.CurrentDirectory, folder, $"{student.Info}.json");
-                if (!File.Exists(path))
-                    dutys = new List<DateTime>();
-                else
-                    using (var fs = File.OpenRead(path))
-                        dutys = JsonSerializer.Deserialize<List<DateTime>>(fs);
-                foreach(var dute in dutys)
-                {
-                    dutys.Remove(dute);
-                }
-
+            //var test = "test_dutys";
+            //foreach(var student in  studentRepository.Students)
+            //{
+                //string path = Path.Combine(Environment.CurrentDirectory, test, $"{student.Info}.json");
+                //if (!File.Exists(path))
+                //    continue;
+                //else
+                //{
+                
+                    File.Delete(path);
+            var fs = File.Create(path);
+            fs.Close();
+                //}
                 //using (var fs = File.OpenRead(path))
                 //    JsonSerializer.Serialize(fs, dutys);
-            }
+            //}
             
 
             //dutys.Add(today);
