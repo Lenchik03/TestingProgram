@@ -1,11 +1,11 @@
 ﻿using CallOfDuty;
 
-internal class CommandClearDutys : UserCommand
+internal class Reset : UserCommand
 {
     private MainMenu mainMenu;
     private StudentRepository studentRepository;
 
-    public CommandClearDutys(MainMenu mainMenu, StudentRepository studentRepository)
+    public Reset(MainMenu mainMenu, StudentRepository studentRepository)
     {
         this.mainMenu = mainMenu;
         this.studentRepository = studentRepository;
@@ -16,7 +16,7 @@ internal class CommandClearDutys : UserCommand
         {
             string path = Path.Combine(Environment.CurrentDirectory, "dutys", $"{student.Info}.json");
             if (File.Exists(path))
-            mainMenu.DeleteAllDutys(path);
+            mainMenu.RemoveAllDutys(path);
         }
         
         Console.WriteLine("Дежурства обнулены!!!");

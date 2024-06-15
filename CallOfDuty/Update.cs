@@ -1,11 +1,11 @@
 ﻿using CallOfDuty;
 
-internal class CommandUpdateStudent : UserCommand
+internal class Update : UserCommand
 {
     private MainMenu mainMenu;
     StudentRepository studentRepository;
 
-    public CommandUpdateStudent(MainMenu mainMenu, StudentRepository studentRepository)
+    public Update(MainMenu mainMenu, StudentRepository studentRepository)
     {
         this.mainMenu = mainMenu;
         this.studentRepository = studentRepository;

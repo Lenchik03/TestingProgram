@@ -10,11 +10,11 @@ SelectDuty todayDuty = new SelectDuty(studentDuty);
 
 CommandManager commandManager = new CommandManager();
 MainMenu mainMenu = new MainMenu(studentRepository);
-commandManager.RegisterCommand("Create", new CommandCreateStudent(mainMenu));
-commandManager.RegisterCommand("Pick", new CommandPickStudent(mainMenu, todayDuty));
-commandManager.RegisterCommand("Update", new CommandUpdateStudent(mainMenu, studentRepository));
-commandManager.RegisterCommand("Show", new CommandShowAllStudent(mainMenu, studentRepository));
-commandManager.RegisterCommand("Delete", new CommandDeleteStudent(mainMenu, studentRepository));
-commandManager.RegisterCommand("Clear", new CommandClearDutys(mainMenu, studentRepository));
+commandManager.RegisterCommand("Create", new Create(mainMenu));
+commandManager.RegisterCommand("Pick", new Pick(mainMenu, todayDuty));
+commandManager.RegisterCommand("Update", new Update(mainMenu, studentRepository));
+commandManager.RegisterCommand("Show", new Show(mainMenu, studentRepository));
+commandManager.RegisterCommand("Delete", new Delete(mainMenu, studentRepository));
+commandManager.RegisterCommand("Clear", new Reset(mainMenu, studentRepository));
 commandManager.Start();
 

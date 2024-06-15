@@ -1,11 +1,11 @@
 ﻿using CallOfDuty;
 
-class CommandShowAllStudent : UserCommand
+class Show : UserCommand
 {
     private MainMenu mainMenu;
     StudentRepository studentRepository;
 
-    public CommandShowAllStudent(MainMenu mainMenu, StudentRepository studentRepository)
+    public Show(MainMenu mainMenu, StudentRepository studentRepository)
     {
         this.mainMenu = mainMenu;
         this.studentRepository = studentRepository;

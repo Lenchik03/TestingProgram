@@ -1,12 +1,12 @@
 ﻿using CallOfDuty;
 
-class CommandPickStudent : UserCommand
+class Pick : UserCommand
 {
     private MainMenu studentDB;
     StudentRepository studentRepository;
     StudentDuty StudentDuty;
     SelectDuty todayDuty;
-    public CommandPickStudent(MainMenu studentDB, SelectDuty todayDuty)
+    public Pick(MainMenu studentDB, SelectDuty todayDuty)
     {
         this.studentDB = studentDB;
         this.todayDuty = todayDuty;

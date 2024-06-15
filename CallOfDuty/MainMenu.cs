@@ -66,7 +66,7 @@ namespace CallOfDuty
             return true;
         }
 
-        public List<Student> ShowAll(string text)
+        public List<Student> Show(string text)
         {
             List<Student> result = new();
             foreach (var student in studentRepository.Students)
@@ -90,28 +90,11 @@ namespace CallOfDuty
             File.WriteAllLines(file, studs);
         }
 
-        public void DeleteAllDutys(string path)
-        {
-            //var test = "test_dutys";
-            //foreach(var student in  studentRepository.Students)
-            //{
-                //string path = Path.Combine(Environment.CurrentDirectory, test, $"{student.Info}.json");
-                //if (!File.Exists(path))
-                //    continue;
-                //else
-                //{
-                
-                    File.Delete(path);
+        public void RemoveAllDutys(string path)
+        {    
+            File.Delete(path);
             var fs = File.Create(path);
             fs.Close();
-                //}
-                //using (var fs = File.OpenRead(path))
-                //    JsonSerializer.Serialize(fs, dutys);
-            //}
-            
-
-            //dutys.Add(today);
-            
         }
     }
 }

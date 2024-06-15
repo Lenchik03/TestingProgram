@@ -16,29 +16,29 @@ namespace CallOfDuty.Tests
         [SetUp]
         public void Setup()
         {
-            string file = "DeleteTest.txt";
+            string file = "testStudent6.txt";
             db = new StudentRepository(file);
             mainMenu = new MainMenu(db);
             
         }
 
         [Test]
-        public void MainMenu_WasCreateNewStudent()
+        public void MainMenu_CreateStudent()
         {
             var s = db.Students.Count;
-            string name = "Петр";
+            string name = "Иван";
             string info = "Петров";
             mainMenu.Create(name, info);
             Assert.That(db.Students.Count, Is.EqualTo(s + 1));
         }
 
         [Test]
-        public void MainMenu_WasUpdateStudent()
+        public void MainMenu_UpdateStudent()
         {
             Student stud1 = db.Students.FirstOrDefault(s => s.Info == "test2");
 
-            string name = "Станислав";
-            string info = "Криповников";
+            string name = "Петр";
+            string info = "Петров";
             int index = 1;
             stud1 = mainMenu.UpdateStud(index, name, info);
             Assert.That(name, Is.EqualTo(stud1.Name));
@@ -47,7 +47,7 @@ namespace CallOfDuty.Tests
         }
 
         [Test]
-        public void MainMenu_WasDeleteStudent()
+        public void MainMenu_DeleteStudent()
         {
             int countStudent = db.Students.Count;
             var stud1 = db.Students.FirstOrDefault(s => s.Info == "test2");
@@ -57,13 +57,13 @@ namespace CallOfDuty.Tests
         }
 
         [Test]
-        public void MainMenu_WasDeleteAllDutysForAllStudents()
+        public void MainMenu_RemoveAllDutys()
         {
             string folder = "test_dutys2";
             foreach (var student in db.Students)
             {
                 string path = Path.Combine(Environment.CurrentDirectory, folder, $"{student.Info}.json");
-                mainMenu.DeleteAllDutys(path);
+                mainMenu.RemoveAllDutys(path);
                 FileInfo n = new FileInfo(path);
                 long m = n.Length;
                 Assert.That(m, Is.EqualTo(0));

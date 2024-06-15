@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace CallOfDuty
 {
-    class CommandCreateStudent: UserCommand
+    class Create: UserCommand
     {
         private MainMenu mainMenu;
 
-        public CommandCreateStudent(MainMenu mainMenu)
+        public Create(MainMenu mainMenu)
         {
             this.mainMenu = mainMenu;
         }
 
         public override void Execute()
         {
-            Console.WriteLine("Создание студента...");
             
-            Console.WriteLine("Укажите имя...");
+            Console.WriteLine("Укажите имя");
             string name = Console.ReadLine();
-            Console.WriteLine("Укажите фамилию...");
+            Console.WriteLine("Укажите фамилию");
             string info = Console.ReadLine();
             Student newStudent = mainMenu.Create(name, info);
             if (mainMenu.Update(newStudent))
