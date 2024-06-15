@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallOfDuty", "CallOfDuty\CallOfDuty.csproj", "{8B76DF39-3882-40D5-B790-D1E3A4090B90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallOfDuty", "CallOfDuty\CallOfDuty.csproj", "{8B76DF39-3882-40D5-B790-D1E3A4090B90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallOfDuty.Tests", "CallOfDuty.Tests\CallOfDuty.Tests.csproj", "{08BFFDA3-210D-4A81-8326-7B37E1D006C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallOfDuty.Tests", "CallOfDuty.Tests\CallOfDuty.Tests.csproj", "{08BFFDA3-210D-4A81-8326-7B37E1D006C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

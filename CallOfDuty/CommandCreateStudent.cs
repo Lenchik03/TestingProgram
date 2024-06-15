@@ -18,11 +18,12 @@ namespace CallOfDuty
         public override void Execute()
         {
             Console.WriteLine("Создание студента...");
-            Student newStudent = mainMenu.Create();
+            
             Console.WriteLine("Укажите имя...");
-            newStudent.Name = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.WriteLine("Укажите фамилию...");
-            newStudent.Info = Console.ReadLine();
+            string info = Console.ReadLine();
+            Student newStudent = mainMenu.Create(name, info);
             if (mainMenu.Update(newStudent))
                 Console.WriteLine("Студент создан!");
             else

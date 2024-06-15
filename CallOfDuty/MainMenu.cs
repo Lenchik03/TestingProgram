@@ -29,9 +29,11 @@ namespace CallOfDuty
         Random rnd = new Random();
         private string folder = "";
 
-        public Student Create()
+        public Student Create(string name, string info)
         {
             Student newStudent = new Student();
+            newStudent.Name = name;
+            newStudent.Info = info;
             studentRepository.Students.Add(newStudent);
             return newStudent;
         }
